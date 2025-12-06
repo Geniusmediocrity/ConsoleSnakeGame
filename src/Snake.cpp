@@ -1,6 +1,8 @@
-#include "../inc/Snake.hpp"	 // Where it's gone
+#include "Snake.hpp"  // Where is it from
 
-Snake::Snake() { reset(); }
+#include "Field.hpp"  // Field
+
+Snake::Snake(Field& field) { reset(field); }
 
 void Snake::setDirection(Direction dir) {
 	const bool isOpposite = (m_direction == Direction::Up && dir == Direction::Down) ||
@@ -22,13 +24,13 @@ void Snake::move() {
 		m_shloudGrow = false;
 }
 
-void Snake::reset() {
+void Snake::reset(Field& field) {
 	m_body.clear();
 	m_direction = Direction::Right;
 	m_shloudGrow = false;
 
 	// TODO: start position
-	const Point start{13, 13};
+	const Point start{field.width() / 2, field.height() / 2};
 	m_body.push_front(start);
 }
 

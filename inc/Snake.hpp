@@ -2,6 +2,8 @@
 
 #include <deque>  // Snake's bosy
 
+class Field;
+
 class Snake
 {
   public:
@@ -27,7 +29,7 @@ class Snake
 	};
 
 	// Constructor
-	Snake();
+	Snake(Field& field);
 
 	// Constants
 	static constexpr int kInitialLength = 1;
@@ -42,10 +44,10 @@ class Snake
 	void grow();
 	void move();
 
-	void reset();
+	void reset(Field& field);
 
 	// Data permissions
-	[[nodiscard]] const std::deque<Point>& get() const { return m_body; }
+	[[nodiscard]] const std::deque<Point>& body() const { return m_body; }
 	[[nodiscard]] Point head() const { return m_body.back(); }
 	[[nodiscard]] size_t length() const { return m_body.size(); }
 

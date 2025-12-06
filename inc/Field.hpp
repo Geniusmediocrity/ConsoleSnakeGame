@@ -9,8 +9,8 @@ class Field
 
 	explicit Field(int initHeigth = kDefaultHeight, int initWidth = kDefaultWidth);
 
-	[[nodiscard]] const int height() const { return m_height; }
-	[[nodiscard]] const int width() const { return m_width; }
+	[[nodiscard]] int height() const { return m_height; }
+	[[nodiscard]] int width() const { return m_width; }
 
 	[[nodiscard]] bool isOutOfBounds(const Snake::Point& snakeHeadPoint);
 

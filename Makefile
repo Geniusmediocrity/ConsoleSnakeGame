@@ -26,31 +26,13 @@ $(BUILD_DIR)/%.o: $(SRC_DIR)/%.cpp | $(BUILD_DIR)
 	$(CXX) $(CXX_FLAGS) -c $< -o $@
 
 # Creating directories
-$(BUILDDIR) $(BINDIR):
-	mkdir -p $@
-
-# === Debug ===
-
-.PHONY: debug
-debug: $(TARGET)_debug
-
-# Building executable file
-$(TARGET)_debug: $(OBJECTS) | $(BIN_DIR)
-	$(CXX) $(LD_FLAGS) $^ -o $@
-
-# Building object files
-$(BUILD_DIR)/%.o: $(SRC_DIR)/%.cpp | $(BUILD_DIR)
-	@mkdir -p $(dir $@)
-	$(CXX) $(CXX_FLAGS) --debug $< -o $@
-
-# Creating directories
-$(BUILDDIR) $(BINDIR):
+$(BUILD_DIR) $(BIN_DIR):
 	mkdir -p $@
 
 # == Cleaning up the binaries and executables ===
 .PHONY: clean
 clean:
-	rm -rf $(BUILDDIR) $(BINDIR)
+	rm -rf $(BUILD_DIR) $(BIN_DIR)
 
 # === Installing in system (/usr/sbin) ===
 .PHONY: install

@@ -16,26 +16,28 @@ class Renderer
 	Renderer();
 
 	// Basic functions implementation from *curses.h
-	void init();
 	void showGameOver();
-	void shutdown();
 	void clear();
 	void refresh();
 
+	// Get a button pressed by the user
 	[[nodiscard]] int getChar();
 
 	// Draw TUI elements
-	void drawFood(Food& food);
-	void drawSnake(Snake& snake);
-	void drawStats();
-	void drawField(Field& field);
+	void drawFood(const Food& food);
+	void drawSnake(const Snake& snake);
+	void drawStats(const int score, const std::string& gameState);
+	void drawField(const Field& field);
 
 	// Draw chars
-	void drawChar(int x, int y, char ch) const;
-	void drawString(int x, int y, const std::string& str) const;
+	void drawChar(const int& y, const int& x, const char& ch) const;
+	void drawString(const int& y, const int& x, const std::string& str) const;
 
 	~Renderer();
 
   private:
 	bool m_initialized{false};
+
+	void init();
+	void shutdown();
 };
