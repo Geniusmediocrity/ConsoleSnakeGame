@@ -31,7 +31,7 @@ class Renderer
 
 	// Draw chars
 	void drawChar(const int& y, const int& x, const char& ch) const;
-	void drawString(const int& y, const int& x, const std::string& str) const;
+	void drawString(int& y, int& x, const std::string& str) const;
 
 	~Renderer();
 

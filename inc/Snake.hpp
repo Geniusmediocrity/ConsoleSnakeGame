@@ -32,9 +32,9 @@ class Snake
 	Snake(Field& field);
 
 	// Constants
-	static constexpr int kInitialLength = 1;
+	static constexpr int kInitialLength = 3;
 	static constexpr char kHeadChar = '@';
-	static constexpr char kBodyChat = 'o';
+	static constexpr char kBodyChar = 'o';
 
 	// Direction methods
 	void setDirection(Direction dir);
@@ -48,7 +48,7 @@ class Snake
 
 	// Data permissions
 	[[nodiscard]] const std::deque<Point>& body() const { return m_body; }
-	[[nodiscard]] Point head() const { return m_body.back(); }
+	[[nodiscard]] Point head() const { return m_body.front(); }
 	[[nodiscard]] size_t length() const { return m_body.size(); }
 
 	// Collisions check

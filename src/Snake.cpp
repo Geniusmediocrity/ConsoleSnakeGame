@@ -30,17 +30,17 @@ void Snake::reset(Field& field) {
 	m_shloudGrow = false;
 
 	// TODO: start position
-	const Point start{field.width() / 2, field.height() / 2};
-	m_body.push_front(start);
+	for (int i{0}; i < kInitialLength; ++i)
+		m_body.push_front({field.width() / 2 + i, field.height() / 2});
 }
 
 bool Snake::isSelfColliding() const {
 	const Point& head = m_body.front();
 
 	for (auto i = m_body.begin() + 1; i < m_body.end(); ++i)
-		if (*i == head) return false;
+		if (*i == head) return true;
 
-	return true;
+	return false;
 }
 
 Snake::Point Snake::nextHead() const {
@@ -56,7 +56,7 @@ Snake::Point Snake::nextHead() const {
 			++head.x;
 			break;
 		case Direction::Left:
-			--head.y;
+			--head.x;
 			break;
 		default:
 			break;

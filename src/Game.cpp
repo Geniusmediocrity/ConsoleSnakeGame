@@ -26,7 +26,7 @@ Game::~Game() = default;
 
 // Starts the game
 void Game::run() {
-	// needed to use the `2s` literal instead of a long wxpression
+	// needed to use the `2s` literal instead of a long expression
 	using namespace std::chrono_literals;
 
 	try {

@@ -8,6 +8,6 @@ Field::Field(int initHeight, int initWidth) : m_height(initHeight), m_width(init
 }
 
 bool Field::isOutOfBounds(const Snake::Point& snakeHdPt) {
-	return (snakeHdPt.x <= 0 || snakeHdPt.x >= m_width || snakeHdPt.y <= 0 ||
-			snakeHdPt.y >= m_height);
+	return (snakeHdPt.x <= 0 || snakeHdPt.x >= m_width - 1 || snakeHdPt.y <= 0 ||
+			snakeHdPt.y >= m_height - 1);
 }

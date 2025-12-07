@@ -8,12 +8,12 @@ Food::Food(const Field& field, const Snake& snake, std::mt19937& rndgen) {
 
 void Food::relocate(const Field& field, const Snake& snake, std::mt19937& rndgen) {
 	constexpr static int minX = 1;
-	const static int maxX = field.width() - 1;
+	const static int maxX = field.width() - 2;
 	constexpr static int minY = 1;
-	const static int maxY = field.height() - 1;
+	const static int maxY = field.height() - 2;
 
-	std::uniform_int_distribution<int> distX(minX, maxX);
-	std::uniform_int_distribution<int> distY(minY, maxY);
+	static std::uniform_int_distribution<int> distX(minX, maxX);
+	static std::uniform_int_distribution<int> distY(minY, maxY);
 
 	constexpr static int kMaxAttempts = 1000;
 	for (int att{0}; att < kMaxAttempts; ++att) {

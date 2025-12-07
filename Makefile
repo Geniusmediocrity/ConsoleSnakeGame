@@ -29,7 +29,7 @@ $(BUILD_DIR)/%.o: $(SRC_DIR)/%.cpp | $(BUILD_DIR)
 $(BUILD_DIR) $(BIN_DIR):
 	mkdir -p $@
 
-# == Cleaning up the binaries and executables ===
+# === Cleaning up the binaries and executables ===
 .PHONY: clean
 clean:
 	rm -rf $(BUILD_DIR) $(BIN_DIR)

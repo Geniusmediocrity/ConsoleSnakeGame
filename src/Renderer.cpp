@@ -22,14 +22,15 @@ int Renderer::getChar() { return ::getch(); }
 // === Draw TUI elements ===
 
 void Renderer::showGameOver() {
-	const int centerY = COLS / 2;
-	const int centerX = LINES / 2;
+	int centerY = COLS / 2;
+	int centerX = LINES / 2;
 
-	const std::string msg = "GAME OVER";
-	const int msgX = centerX - static_cast<int>(msg.size()) / 2;
-
+	std::string msg = "GAME OVER";
+	int msgX = centerX - static_cast<int>(msg.size()) / 2;
 	drawString(centerY, msgX, msg);
-	drawString(centerY + 1, centerX - 8, "Press Q to quit");
+
+	msg = "Press Q to quit";
+	drawString(++centerY, msgX, "Press Q to quit");
 }
 
 void Renderer::drawFood(const Food& food) {
@@ -43,14 +44,15 @@ void Renderer::drawSnake(const Snake& snake) {
 
 	drawChar(head.y, head.x, snake.kHeadChar);
 	for (auto it = body.begin() + 1; it != body.end(); ++it)
-		drawChar(it->y, it->x, snake.kBodyChat);
+		drawChar(it->y, it->x, snake.kBodyChar);
 }
 
 void Renderer::drawStats(const int score, const std::string& gameState) {
-	int x = 27;	 // Basic border width + 2
+	int x = 32;	 // Basic border width + 2
 	int y = 1;
 
 	drawString(y, x, "Score: " + std::to_string(score));
+	x = 32;
 	drawString(++y, x, "State: " + gameState);
 }
 
@@ -75,18 +77,10 @@ void Renderer::drawField(const Field& field) {
 
 // === Draw chars ===
 
-void Renderer::drawChar(const int& y, const int& x, const char& ch) const {
-	// Protection against going abroad
-	if (y < 0 || y >= LINES || x < 0 || x >= COLS) return;
-
-	mvaddch(y, x, ch);
-}
-void Renderer::drawString(const int& y, const int& x, const std::string& str) const {
-	// Protection against going abroad
-	if (y < 0 || y >= LINES || x < 0 || x >= COLS) return;
-
+void Renderer::drawChar(const int& y, const int& x, const char& ch) const { mvaddch(y, x, ch); }
+void Renderer::drawString(int& y, int& x, const std::string& str) const {
 	for (auto ch : str)
-		mvaddch(y, x, ch);
+		mvaddch(y, x++, ch);
 }
 
 // === Private ===
